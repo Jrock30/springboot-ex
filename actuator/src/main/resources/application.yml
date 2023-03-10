@@ -1,0 +1,36 @@
+management:
+# actuator 만 9292 로 접근 그리고 내부망 접근만 허용 할 것, 이게 안된다면 시큐리티를 통해 인증 된 사용자만 접근 하도록 할 것(기본 8080)
+#  server:
+#    port: 9292
+  info:
+    java:
+      enabled: true
+    os:
+      enabled: true
+    env:
+      enabled: true
+  endpoint:
+    shutdown:
+      enabled: true # 서버 내리는 기능.
+    health:
+#      show-details: always
+      show-components: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#        exclude: "env, beans"
+
+info:
+  app:
+    name: hello-actuator
+    company: jrock
+
+logging:
+  level:
+    hello.controller: debug
+
+server:
+  tomcat:
+    mbeanregistry:
+      enabled: true # 톰캣 메트릭 더 많이 사용
